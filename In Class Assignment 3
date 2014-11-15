@@ -1,0 +1,36 @@
+##############################################
+# Danielle Smalls
+# September 22nd, 2014
+# CMDA 3654
+# In class assignment #3
+###############################################
+
+# Load the dataset into the environment
+load("exampleData1.rData")
+
+#Merge the medianincome and custdata datasets
+custdata_merge = merge(custdata, medianincome)
+
+#Get the median income value
+median_income <- mean(custdata_m$income)
+
+#Normalize the income values 
+custdata_m$norm_income <- custdata_m$income/median_income
+
+#Get Numerical Summaries of the norm_income variable
+summary(custdata_m$norm_income)
+
+#Visualize the data in a histogram for bothn income and norm.income
+hist(custdata_m$income, breaks = 7)
+hist(custdata_m$norm_income, breaks = 7)
+
+#Split data for training and sample set
+#First generate an additional column with random numbers between 0 and 1
+custdata_m$dataSize = runif(dim(custdata_m)[1])
+
+#30% training set
+training= subset(custdata_m, custdata_m$dataSize <= 0.3)
+#70% testing set 
+testing= subset(custdata_m, custdata_m$dataSize > 0.3)
+
+
