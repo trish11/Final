@@ -1,0 +1,32 @@
+##############################################
+# Danielle Smalls
+# September 3rd, 2014
+# CMDA 3654
+# In class assignment #1
+###############################################
+
+#Set directory to find files for upload
+setwd("~/Documents/CMDA/Rfolder")
+
+#Reads data table imported from directory file
+mydatacsv<- read.table('cars1.csv',sep=',', header=T)
+
+#Command that displays the dimension of the table
+dim(mydatacsv)    
+
+#Assign the value within cell [2,3] to var1
+var1 <- mydatacsv[2,3]
+var1
+
+#Changes column names(variable names) from "Speed" to"SPEED" and Distance 
+colnames(mydatacsv) <- c('SPEED','Distance')
+print(mydatacsv)
+
+#Print first column only
+print(mydatacsv[,1])
+
+#Print second column only
+print(mydatacsv[,2])
+
+#Outputs the value of row 15 from data frame, mydatacsv
+mydatacsv[15,]
