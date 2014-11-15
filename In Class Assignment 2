@@ -1,0 +1,59 @@
+##############################################
+# Danielle Smalls
+# September 3rd, 2014
+# CMDA 3654
+# In class assignment #2
+###############################################
+
+#Part 1
+load('Users\Dani\Downloads\exampleData.rData')
+summary(custdata)
+
+uciCar <- read.table(
+'http://www.win-vector.com/dfiles/car.data.csv', sep=',', header=T)
+names(uciCar)
+summary(uciCar)
+
+#Load credit data
+load('credit.RData')
+head(d,10)
+summary(d)
+
+#Part 2 
+#Adds hexbin package to environment
+library(hexbin)
+library(ggplot2)
+
+#Create a subset for the hexbin plot
+custdata2 <- subset(custdata,
+            (custdata$age > 0 & custdata$age < 100
+            & custdata$income > 0))
+
+#Hexbin Plot
+ggplot(custdata2, aes(x=age, y=income)) +
+  geom_hex(binwidth=c(5, 10000)) +
+  geom_smooth(color="white", se=F) +
+  ylim(0,200000)
+
+#Scatter Plot
+ggplot(custdata2, aes(x=age, y=income)) +
+  geom_point() + ylim(0, 200000)
+
+#Hexbin Plot For the number of vehicles v. income
+ggplot(custdata2, aes(x=num.vehicles, y=income)) +
+  geom_hex(binwidth=c(5, 10000)) +
+  geom_smooth(color="white", se=F) +
+  ylim(0,200000)
+
+#Scatter Plot for the number of vehicles v. income
+ggplot(custdata2, aes(x=num.vehicles, y=income)) +
+  geom_point() + ylim(0, 200000)
+
+#Side-by-side Bar Chart
+ggplot(custdata2) + geom_bar(aes(x=income.lt.30K,
+ fill=recent.move),position="dodge")
+ 
+#Filled Bar Chart
+ggplot(custdata2) + geom_bar(aes(x=income.lt.30K,
+fill=recent.move),position="fill")
+
