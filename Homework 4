@@ -1,0 +1,74 @@
+#############################################################################
+#Danielle Smalls
+#CDMA-Homework #4
+#November 9th, 2014
+#Created using Ipython Notebook
+
+#############################################################################
+
+# In[1]: Import packages
+
+import matplotlib as mp
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+import xlrd
+import datetime
+import scipy
+
+
+# In[2]: Read project data from excel into pandas
+mlbdata = pd.read_csv('/Users/Dani/Documents/CMDA/Python/Homework2-Baseballdata.csv')
+
+# In[3]: Display project data array
+mlbdata.values
+
+# In[4]: Default for the number of rows within the data set starting at 0. (number of rows=50)
+mlbdata.index
+
+# In[4]: Fill any missing values with "NULL"
+missingval=pd.read_csv('/Users/Dani/Documents/CMDA/Python/Homework2-Baseballdata.csv',na_values=['NULL'])
+missingval
+# No missing values found
+
+
+# In[6]:Displays multiple summary statistics for the project data including mean, standard deviation, max, min, quartiles, and count according to each numerical category
+mlbdata.describe()
+
+# In[7]:Plot that graphs the frequency of Team name within the roster and produces a bar chart
+mb=pd.value_counts(mlbdata.Team, sort=False).plot(kind='barh')
+
+
+# In[8]: First visulization created from project data. Shows the amount of times each player has played a game
+
+fig1=pd.value_counts(mlbdata.G, sort=False).plot(kind='bar')
+label1=fig1.set_title('Frequency of Number of Games Played by Each Player')
+xaxis1=fig1.set_xlabel('Amount of Games Played')
+yaxis1=fig1.set_ylabel('Number of Players')
+
+
+# In[9]: Second visulization that shows how many players are on each team from the given roster
+fig2=pd.value_counts(mlbdata.Team, sort=False).plot(kind='barh')
+label2=fig2.set_title('Frequency of Teams represented by Players')
+xaxis2=fig2.set_xlabel('Amount Players on Team')
+yaxis2=fig2.set_ylabel('Team City Abbreviations')
+
+
+# In[10]: Third visulization that maps the rank of the player to the number of bases stolen
+fig3=plt.scatter(mlbdata['RK'],mlbdata['SB'])
+label3=plt.title('Scatterplot of Player Rank v. Number of Bases Stolen')
+ticks3=plt.xticks(range(50))
+ticks3y=plt.yticks([0,5,10,15,20,25,30])
+xaxis3=plt.xlabel('Rank of Player')
+yaxis3=plt.ylabel('Amount of Bases Stolen')
+
+
+# In[11]: Pickle created for the data
+mlbdata.to_pickle('mlbdata_pickle')
+
+
+# In[12]: Check to ensure that the pickle was created
+pd.read_pickle('mlbdata_pickle')
+
+
+
