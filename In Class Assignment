@@ -1,0 +1,176 @@
+""" 
+CMDA-3654
+In class Assignment #4
+Includes parts II - III
+Danielle Smalls
+"""
+
+#PART II
+
+#Prints a message that says, "I will now count my chickens:"
+print "I will now count my chickens:"
+
+#Calculates the formula, which equals 30 and displays "Hens" 
+#Calculates the formula, which equals 97 and displays "Roosters"
+print "Hens", 25 + 30 / 6
+print "Roosters", 100 - 25 * 3 % 4
+
+#Prints a message that says, "Now I will count the eggs:"
+print "Now I will count the eggs:"
+
+#Calculates the formula, which equals 7
+print 3 + 2 + 1 - 5 + 4 % 2 - 1 / 4 + 6
+
+#Prints "Is it true that 3+2<5-7?"
+print "Is it true that 3 + 2 < 5 - 7?"
+
+#Returns the answer to the inequality, which is False
+print 3 + 2 < 5 - 7
+
+#Prints the message "What is 3+2?" and then gives answer, 5
+#Prints the message "What is 5-7?" and then gives answer, -2
+print "What is 3 + 2?", 3 + 2
+print "What is 5 - 7?", 5 - 7
+
+#Prints message, "Oh, that's why it's False."
+print "Oh, that's why it's False."
+
+#Prints message, "How about some more."
+print "How about some more."
+
+#Prints message "Is it greater?", then displays answer, True
+print "Is it greater?", 5 > -2
+#"" True
+print "Is it greater or equal?", 5 >= -2
+#"" False
+print "Is it less or equal?", 5 <= -2
+
+
+#Establishes objects as days of the week
+days = "Mon Tue Wed Thu Fri Sat Sun"
+months = "Jan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug"
+
+#Prints message "Here are the days:" and then displays the days of the week in a single row
+#Prints message about the months, then displays the months in a column list
+print "Here are the days: ", days
+print "Here are the months: ", months
+
+
+the_count = [1, 2, 3, 4, 5]
+fruits = ['apples', 'oranges', 'pears', 'apricots']
+change = [1, 'pennies', 2, 'dimes', 3, 'quarters']
+
+# Displays the message "This is count" then displays corresponding number in a column
+for number in the_count:
+    print "This is count %d" % number
+
+# Displays the message "A fruit of type:" then displays the corresponding fruit as a list
+for fruit in fruits:
+    print "A fruit of type: %s" % fruit
+
+# Refers to the change vector and displays the list within the vestor as a column vector
+# Use %r format when you don't know
+#if the elements are strings or integers
+for i in change:
+    print "I got %r" % i
+
+# we can also build lists, first start with an empty one
+elements = []
+
+# then use the range function to do 0 to 5 counts
+for i in range(0, 6):
+    print "Adding %d to the list." % i
+    # append is a function that lists understand
+    elements.append(i)
+
+# Counts the number within the new list, "elements" and begins with 0 through 5
+for i in elements:
+    print "Element was: %d" % i
+    
+    
+    
+#PART III
+
+#Working with Lists
+
+ten_things = "Apples Oranges Crows Telephone Light Sugar"
+
+#print "Wait there are not 10 things in that list. Let's fix that."
+
+stuff = ten_things.split(' ')
+more_stuff = ["Day", "Night", "Song", "Frisbee", "Corn", "Banana", "Girl", "Boy"]
+
+#Command Adds more to the stuff lists and gives the count of how many items are included
+#in the lise
+while len(stuff) != 10:
+    next_one = more_stuff.pop()
+    print "Adding: ", next_one
+    stuff.append(next_one)
+    print "There are %d items now." % len(stuff)
+    
+#The stuff list includes: Apples, Oranges, Crows, Telephone, Light, Sugar, Boy, Girl, 
+#Banana and Corn
+print "The 'stuff' list: ", stuff
+
+#Prints the first item in stuff, which is "Oranges"
+print stuff[1]
+#Prints the last item in stuff, which is "Corn"
+print stuff[-1] 
+#Removes the last item in the list and prints it, which is "Corn"
+print stuff.pop()
+#Prints the list of stuff
+print ' '.join(stuff) 
+#Joins the 3rd and 5th element of stuff and places a # in between the two
+print '#'.join(stuff[3:5])
+
+# Defines objects as states and their abbreviations
+states = {
+    'Oregon': 'OR',
+    'Florida': 'FL',
+    'California': 'CA',
+    'New York': 'NY',
+    'Michigan': 'MI'
+}
+
+# Defines object as cities and their abbreviations
+cities = {
+    'CA': 'San Francisco',
+    'MI': 'Detroit',
+    'FL': 'Jacksonville'
+}
+
+# Defines object as cities and their abbreviations and calls the state by its
+# abbreviation
+cities['NY'] = 'New York'
+cities['OR'] = 'Portland'
+
+# Prints the name of the state for each given abbreviation
+print '-' * 10
+print "NY State has: ", cities['NY']
+print "OR State has: ", cities['OR']
+
+# Prints the city for each state given, Detroit and Jacksonville respectively
+print '-' * 10
+print "Michigan's abbreviation is: ", states['Michigan']
+print "Florida's abbreviation is: ", states['Florida']
+
+#Uses the above quotation to print Michigan and Florida as their abbreviations 
+print '-' * 10
+print "Michigan has: ", cities[states['Michigan']]
+print "Florida has: ", cities[states['Florida']]
+
+# Displays the list of states and their abbreviations. "California is abbreviated CA"
+print '-' * 10
+for state, abbrev in states.items():
+    print "%s is abbreviated %s" % (state, abbrev)
+
+# Displays the abbreviations and the corresponding cities
+print '-' * 10
+for abbrev, city in cities.items():
+    print "%s has the city %s" % (abbrev, city)
+
+# Displays the State in the list and associated abbreviation and cities
+print '-' * 10
+for state, abbrev in states.items():
+    print "%s state is abbreviated %s and has city %s" % (
+        state, abbrev, cities[abbrev])
