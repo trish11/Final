@@ -1,0 +1,72 @@
+#Import packages
+
+import matplotlib as mp
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+import pyper as pr
+import xlrd
+import datetime
+import scipy
+
+
+#Read project data from excel into pandas
+mlbdata = pd.read_csv('/Users/Dani/Documents/CMDA/Baseball-datanew.csv')
+
+
+#Display project data array
+mlbdata.values
+
+
+#Default for the number of rows within the data set starting at 0. (number of rows=50)
+mlbdata.index
+
+
+
+# In[4]: Fill any missing values with "NULL"
+missingval=pd.read_csv('/Users/Dani/Documents/CMDA/Baseball-datanew.csv',na_values=['NULL'])
+missingval
+# No missing values found
+
+
+# In[6]:Displays multiple summary statistics for the project data including mean, standard deviation, max, min, quartiles, and count according to each numerical category
+mlbdata.describe()
+
+
+
+# In[8]: First visulization created from project data. Shows the amount of times each player has played a game
+fig1=pd.value_counts(mlbdata.Team, sort=False).plot(kind='barh')
+label1=fig1.set_title('Frequency of Players on Each Team')
+xaxis1=fig1.set_xlabel('Number of Players')
+yaxis1=fig1.set_ylabel('Team Abbreviations')
+
+
+#Second visulization that maps the rank of the player to average calculated by
+#Hits/At Bat
+fig2=plt.scatter(mlbdata['RK'],mlbdata['AVG_'])
+label3=plt.title('Scatterplot of Player Rank v. Average') 
+xaxis3=plt.xlabel('Rank of Player')
+yaxis3=plt.ylabel('Average')
+
+
+
+#Third Visualization for Home Runs v. Slugging Average
+fig3=plt.scatter(mlbdata['HR'],mlbdata['SLG'])
+label3=plt.title('Scatterplot of Home Runs v. Slugging Average')
+xaxis3=plt.xlabel('Homeruns')
+yaxis3=plt.ylabel('Slugging Average')
+
+
+#Decision Tree!
+r = pr.R(RCMD = '/Users/Dani/Downloads/projectDecTree.r,use_pandas = True) 
+#The Decision Tree code is written in R within the attracted code under the project file
+
+
+
+#Pickle created for the data
+mlbdata.to_pickle('mlbdata_pickle')
+
+
+#Check to ensure that the pickle was created
+pd.read_pickle('mlbdata_pickle')
+
